@@ -8,5 +8,5 @@ import java.lang.annotation.ElementType;;
 @Retention(RetentionPolicy.RUNTIME) //Queda en el codigo fuente pero no llega hasta la clase ... Para eso se pone la anotacion !
 @Target(ElementType.METHOD) // Indica que la anotación se aplica a métodos
 public @interface Web{
-    
+    String value();
 }
