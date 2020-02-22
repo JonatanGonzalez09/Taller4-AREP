@@ -21,7 +21,7 @@ public class BetterSpringBoot {
 	}
 
     public void inicializar(){
-        System.out.println("Entro a BetterSpringBoot");
+        //System.out.println("Entro a BetterSpringBoot");
         String className="edu.escuelaing.arep.ws.WebServices";
         Reflections reflections = new Reflections(className, new SubTypesScanner(false));
         Set<Class<? extends Object>> allClasses = reflections.getSubTypesOf(Object.class);
@@ -36,29 +36,4 @@ public class BetterSpringBoot {
         }
     }
     
-    /* public static void main(String[] args) {
-        String className = "edu.escuelaing.arep.betterSpring.ws.WebServices";
-        try {
-            Class c = Class.forName(className);
-            Method methods[] = c.getMethods();
-            for (Method m : methods){
-                if (m.isAnnotationPresent(Web.class)){
-                    System.out.println("Ejecutando metodo: "+ m.getName());
-                    System.out.println("en clase: "+ c.getName());
-                    try{
-                        System.out.println(m.invoke(null));
-                    }catch(IllegalAccessException e){
-                        Logger.getLogger(BetterSpringBoot.class.getName()).log(Level.SEVERE,null,e);
-                    }catch(IllegalArgumentException e){
-                        Logger.getLogger(BetterSpringBoot.class.getName()).log(Level.SEVERE,null,e);
-                    }catch(InvocationTargetException e){
-                        Logger.getLogger(BetterSpringBoot.class.getName()).log(Level.SEVERE,null,e);
-                    }
-                }
-            }
-        } catch (ClassNotFoundException e) {
-            Logger.getLogger(BetterSpringBoot.class.getName()).log(Level.SEVERE,null,e);
-        }
-        
-    } */
 }

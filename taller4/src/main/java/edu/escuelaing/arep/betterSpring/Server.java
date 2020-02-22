@@ -53,7 +53,7 @@ public class Server {
                 OutputStream os = clientSocket.getOutputStream();
 
                 if(path != null) {
-                    if(path.equals("/hello")){
+                    if(path.equals("/hello.html")){
 						prueba(clientSocket, os);
 					}else if(path.equals("/users.bd")){
                         usersBD(clientSocket, os);

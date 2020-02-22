@@ -2,7 +2,7 @@ package edu.escuelaing.arep.betterSpring.ws;
 
 import java.util.List;
 
-import edu.escuelaing.arep.betterSpring.clases.Usuario;
+import edu.escuelaing.arep.betterSpring.Usuario;
 import edu.escuelaing.arep.betterSpring.annotations.Web;
 import edu.escuelaing.arep.betterSpring.imp.UsuarioImpl;
 
@@ -12,10 +12,19 @@ public class WebServices {
 
     @Web("/hello.html")
     public static String hello(){
-        String cad = "<!DOCTYPE html>"
-                    + "<html>"
-                    + " <body style=\"background-color:red\";>"
-                    + "     <h1><center> Hello ! :D </center></h1>"
+		String cad = "HTTP/1.1 200 OK\r\n" + "Content-Type: text/html\r\n" + "\r\n" 
+					+"<!DOCTYPE html>"
+					+ "<html>"
+					+"<head>"
+					+"<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css\">"
+					+"<script src=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js\"></script>"
+					+"</head>"
+					+ " <body>"
+					+"<div class=\"row\">"
+					+"	<div class=\"card-panel red accent-4 col l6 m6 s6 offset-l3 offset-s3 offset-m3\">"
+                    + "     	<h1 class=\"center-align white-text serif-text\">Hello :D</h1>"
+                    + " </div>"
+                    + " </div>"
                     + " </body>"
                     + "</html>";
         return cad;
