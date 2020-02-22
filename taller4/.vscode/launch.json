@@ -4,7 +4,7 @@
             "type": "java",
             "name": "CodeLens (Launch) - BetterSpringBoot",
             "request": "launch",
-            "mainClass": "edu.escuelaing.arep.betterSpring.BetterSpringBoot",
+            "mainClass": "edu.escuelaing.arep.betterSpring.Server",
             "projectName": "taller4"
         }
     ]
