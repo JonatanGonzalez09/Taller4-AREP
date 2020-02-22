@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import edu.escuelaing.arep.betterSpring.Usuario;
+import edu.escuelaing.arep.betterSpring.clases.Usuario;
 
 /**
  * Hello world!

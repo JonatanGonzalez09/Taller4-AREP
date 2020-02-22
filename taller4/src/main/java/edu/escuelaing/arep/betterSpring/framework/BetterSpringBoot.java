@@ -1,5 +1,6 @@
-package edu.escuelaing.arep.betterSpring;
+package edu.escuelaing.arep.betterSpring.framework;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Set;
@@ -13,18 +14,18 @@ import edu.escuelaing.arep.betterSpring.annotations.Web;
 
 public class BetterSpringBoot {
 
-    public HashMap<String, Method> listURL;
+    private HashMap<String, Method> listURL;
 
     public BetterSpringBoot() {
-        this.listURL = new HashMap<String, Method>();
+        listURL = new HashMap<>();
 	}
 
     public void inicializar(){
+        System.out.println("Entro a BetterSpringBoot");
         String className="edu.escuelaing.arep.ws.WebServices";
         Reflections reflections = new Reflections(className, new SubTypesScanner(false));
         Set<Class<? extends Object>> allClasses = reflections.getSubTypesOf(Object.class);
         for (Class cls : allClasses) {
-            //Method methods[] = cls.getMethods();
             for (Method m : cls.getMethods()){
                 if (m.isAnnotationPresent(Web.class)){
                     System.out.println("Ejecutando metodo: "+ m.getName());
@@ -34,7 +35,7 @@ public class BetterSpringBoot {
             }
         }
     }
-
+    
     /* public static void main(String[] args) {
         String className = "edu.escuelaing.arep.betterSpring.ws.WebServices";
         try {

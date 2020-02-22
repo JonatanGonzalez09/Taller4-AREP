@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import edu.escuelaing.arep.betterSpring.framework.BetterSpringBoot;
 import edu.escuelaing.arep.betterSpring.ws.WebServices;
 
 public class Server {
@@ -37,7 +38,6 @@ public class Server {
      */
     public void startServer() {
         this.spring.inicializar();
-        ;
         while (true) {
             try {
                 System.out.println("Estableciendo la conexión...");
@@ -47,19 +47,23 @@ public class Server {
 
                 BufferedReader entrada = new BufferedReader(new InputStreamReader(this.clientSocket.getInputStream()));
 
-                String path = this.getRequest(entrada);
+                String path = this.handleRequest(entrada);
+                System.out.println("Path:"+ path);
 
                 OutputStream os = clientSocket.getOutputStream();
 
-                if ("/webPage.img".equals(path)) {
-                    webPage(clientSocket, os);
-                } else if ("/hello.html".equals(path)) {
-                    prueba(clientSocket, os);
-                } else if ("/Users.bd".equals(path)) {
-                    usersBD(clientSocket, os);
-                } else {
-                    pageNotFound(os);
+                if(path != null) {
+                    if(path.equals("/hello")){
+						prueba(clientSocket, os);
+					}else if(path.equals("/users.bd")){
+                        usersBD(clientSocket, os);
+                    }else if (path.equals("/webPage.img")){
+                        webPage(clientSocket, os);
+                    }else{
+                        pageNotFound(os);
+                    }
                 }
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -84,48 +88,34 @@ public class Server {
         setOutput(res, outputLine, os);
     }
 
-    /**
-     * Method to attend users requests
-     * 
-     * @param entrada User request
-     * @return The path of the request (web, image, ...)
-     */
-    public String getRequest(BufferedReader entrada) {
-
-        boolean notExit = true;
-        String path = null;
-        try {
-            while ((this.serverMessage = entrada.readLine()) != null && notExit) {
-
-                if (this.serverMessage.contains("GET")) {
-                    String[] dir = this.serverMessage.split(" ");
-                    path = dir[1];
-                    notExit = false;
-                }
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        return path;
-    }
-
-    /**
-     * Method to handle wrong client requests
-     * 
-     * @param os
-     */
     private void pageNotFound(OutputStream os) {
         PrintWriter res = new PrintWriter(os, true);
         String outputLine = "HTTP/1.1 404 \r\n\r\n<html><body><h1>Page Not Found</h1></body></html>";
         setOutput(res, outputLine, os);
     }
 
-    /**
-     * Method that give the response to the client request
-     * 
-     * @param res        Response writer
-     * @param outputLine String response (page)
-     */
+    public String handleRequest(BufferedReader entrada) {
+		
+		boolean notExit=true;
+		String path=null;
+		
+		
+		try {
+			while((this.serverMessage=entrada.readLine())!=null && notExit) {
+				
+				if(this.serverMessage.contains("GET")) {
+					String[]dir=this.serverMessage.split(" ");
+					path=dir[1];
+					notExit=false;
+				}
+			}
+		} 
+		catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+		return path;
+	}
+
     private void setOutput(PrintWriter res, String outputLine, OutputStream os) {
         res.println(outputLine);
         res.flush();

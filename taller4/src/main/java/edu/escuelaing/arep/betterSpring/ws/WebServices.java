@@ -2,7 +2,7 @@ package edu.escuelaing.arep.betterSpring.ws;
 
 import java.util.List;
 
-import edu.escuelaing.arep.betterSpring.Usuario;
+import edu.escuelaing.arep.betterSpring.clases.Usuario;
 import edu.escuelaing.arep.betterSpring.annotations.Web;
 import edu.escuelaing.arep.betterSpring.imp.UsuarioImpl;
 
@@ -15,13 +15,13 @@ public class WebServices {
         String cad = "<!DOCTYPE html>"
                     + "<html>"
                     + " <body style=\"background-color:red\";>"
-                    + "     <h1><center>My Web Page</center></h1>"
+                    + "     <h1><center> Hello ! :D </center></h1>"
                     + " </body>"
                     + "</html>";
         return cad;
     }
 
-    @Web("/Users.bd")
+    @Web("/users.bd")
     public static String UserDataBase(){
         return "HTTP/1.1 200 OK\r\n" + "Content-Type: text/html\r\n" + "\r\n" + "<!DOCTYPE html>"
 				+ "<html lang=\"es\">" + "<head>"

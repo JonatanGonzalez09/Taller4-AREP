@@ -1,4 +1,4 @@
-package edu.escuelaing.arep.betterSpring;
+package edu.escuelaing.arep.betterSpring.clases;
 
 public class Usuario{
     int id_Usuario;
