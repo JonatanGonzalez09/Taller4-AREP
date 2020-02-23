@@ -1,4 +1,4 @@
-# Taller Clientes y Servicios #
+# Taller de Arquitecturas de Servidores de Aplicaciones #
 El objetivo del taller es construir un servidor Web **(tipo Apache)** en _Java_, el cual debe ser capaz de entregar páginas html e imágenes tipo PNG, atendiendolas concurrentemente; también debe proveer un framework **(BetterSpringBoot)** IoC para la construcción de aplicaciones web a partir de _POJOS_.
 
 **Link del despliegue de la aplicación: https://evening-scrubland-29292.herokuapp.com/**
@@ -36,23 +36,32 @@ La ruta donde encontrara la documentacion es la siguiente: **\target\apidocs\edu
 
 ## Ejecución ##
 Para empaquetar el proyecto se ejecuta el comando:
+
 ```mvn package```
+
 Para ejecutar las pruebas se ejecuta el comando:
+
 ```mvn test```
 
 ## Pruebas del Servidor recibiendo multiples solicitudes ##
-Se puede observar el recurso de webPage.img que es el retorno de una imagen png. **/webPage.img **
-https://evening-scrubland-29292.herokuapp.com/webPage.img
+
+Se puede observar el recurso de webPage.img que es el retorno de una imagen png. **/webPage.img**
+
+**https://evening-scrubland-29292.herokuapp.com/webPage.img**
 
 ![](https://github.com/JonatanGonzalez09/Taller4-AREP/blob/master/resources/imagen.JPG)
 
-Se puede observar el recurso de users.bd que es el retorno de la base de datos. **/users.bd **
+Se puede observar el recurso de users.bd que es el retorno de la base de datos. **/users.bd**
 
-![](https://evening-scrubland-29292.herokuapp.com/users.bd)
+**https://evening-scrubland-29292.herokuapp.com/users.bd**
 
-Se puede observar el recurso de hello.html que es el retorno de un HTML. **/hello.html **
+![](https://github.com/JonatanGonzalez09/Taller4-AREP/blob/master/resources/database.JPG)
 
-![](https://evening-scrubland-29292.herokuapp.com/hello.html)
+Se puede observar el recurso de hello.html que es el retorno de un HTML. **/hello.html**
+
+**https://evening-scrubland-29292.herokuapp.com/hello.html**
+
+![](https://github.com/JonatanGonzalez09/Taller4-AREP/blob/master/resources/hello.JPG)
 
 ## Licencia ##
 Este proyecto cuenta con la licencia [**GNU General Public License v3.0**](https://github.com/JonatanGonzalez09/Clientes-Servicios-AREP/blob/master/LICENSE)
