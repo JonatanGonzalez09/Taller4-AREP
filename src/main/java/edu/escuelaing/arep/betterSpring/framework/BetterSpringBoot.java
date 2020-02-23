@@ -1,6 +1,6 @@
 package edu.escuelaing.arep.betterSpring.framework;
 
-import java.lang.reflect.InvocationTargetException;
+//import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Set;
@@ -16,10 +16,16 @@ public class BetterSpringBoot {
 
     private HashMap<String, Method> listURL;
 
+    /**
+     * Constructor de la clase BetterSpringBoot.
+     */
     public BetterSpringBoot() {
         listURL = new HashMap<>();
-	}
-
+    }
+    
+    /**
+     * Inicializa el BetterSpringBoot, para hacerlo concurrente.
+     */
     public void inicializar(){
         //System.out.println("Entro a BetterSpringBoot");
         String className="edu.escuelaing.arep.ws.WebServices";

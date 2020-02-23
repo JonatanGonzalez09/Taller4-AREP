@@ -20,7 +20,7 @@ public class Server {
     private BetterSpringBoot spring;
 
     /**
-     * Class constructor. Set attributes values.
+     * Constructor de la clase Servidor.
      */
     public Server() {
         this.spring = new BetterSpringBoot();
@@ -34,9 +34,9 @@ public class Server {
     }
 
     /**
-     * This method starts the server
+     * El metodo empieza el servidor.
      */
-    public void startServer() {
+    public void start() {
         this.spring.inicializar();
         while (true) {
             try {
@@ -70,36 +70,57 @@ public class Server {
         }
     }
 
+    /**
+     * Retorna el requerimiento de la base de datos.
+     * @param clientSocket2 cliente Socket.
+     * @param os Output Stream.
+     */
     private void usersBD(Socket clientSocket2, OutputStream os) {
         PrintWriter res = new PrintWriter(os, true);
         String outputLine = WebServices.UserDataBase();
         setOutput(res, outputLine, os);
     }
 
+    /**
+     * Retorna el requerimiento del hello.
+     * @param clientSocket2 cliente Socket.
+     * @param os Output Stream.
+     */
     private void prueba(Socket clientSocket2, OutputStream os) {
         PrintWriter res = new PrintWriter(os, true);
         String outputLine = WebServices.hello();
         setOutput(res, outputLine, os);
     }
 
+    /**
+     * Retorna el requerimiento del webPage.
+     * @param clientSocket2 cliente Socket.
+     * @param os Output Stream.
+     */
     private void webPage(Socket clientSocket2, OutputStream os) {
         PrintWriter res = new PrintWriter(os, true);
         String outputLine = WebServices.webPage();
         setOutput(res, outputLine, os);
     }
 
+    /**
+     * Retorna el requerimiento del pageNotFound.
+     * @param os Output Stream.
+     */
     private void pageNotFound(OutputStream os) {
         PrintWriter res = new PrintWriter(os, true);
         String outputLine = "HTTP/1.1 404 \r\n\r\n<html><body><h1>Page Not Found</h1></body></html>";
         setOutput(res, outputLine, os);
     }
 
+    /**
+     * Atiende la solicitud del cliente.
+     * @param entrada la URL del cliente.
+     * @return devuelve la cadena de la url de la entrada.
+     */
     public String handleRequest(BufferedReader entrada) {
-		
 		boolean notExit=true;
 		String path=null;
-		
-		
 		try {
 			while((this.serverMessage=entrada.readLine())!=null && notExit) {
 				
@@ -116,6 +137,12 @@ public class Server {
 		return path;
 	}
 
+    /**
+     * Devuelve la salida de la pagina que se mostrara al cliente.
+     * @param res Response
+     * @param outputLine la pagina que se mostrara.
+     * @param os Output Stream.
+     */
     private void setOutput(PrintWriter res, String outputLine, OutputStream os) {
         res.println(outputLine);
         res.flush();
@@ -128,6 +155,10 @@ public class Server {
         }
     }
 
+    /**
+     * Devuelve el puerto por el que se correra la aplicacion.
+     * @return
+     */
     public static int getPort() {
         if (System.getenv("PORT") != null) {
             return new Integer(System.getenv("PORT"));
@@ -135,10 +166,14 @@ public class Server {
         return 4567;
     }
 
+    /**
+     * Metdodo principal para ejecutar el programa.
+     * @param args parametros que necesite el programa principal.
+     */
     public static void main(String args[]) {
         Server server = new Server();
         System.out.println("Iniciando servidor");
-        server.startServer();
+        server.start();
         try {
             servSocket.close();
         } catch (IOException e) {

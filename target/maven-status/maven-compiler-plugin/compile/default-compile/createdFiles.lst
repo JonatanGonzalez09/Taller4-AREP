@@ -1,0 +1,6 @@
+edu\escuelaing\arep\betterSpring\framework\BetterSpringBoot.class
+edu\escuelaing\arep\betterSpring\ws\WebServices.class
+edu\escuelaing\arep\betterSpring\imp\UsuarioImpl.class
+edu\escuelaing\arep\betterSpring\Server.class
+edu\escuelaing\arep\betterSpring\annotations\Web.class
+edu\escuelaing\arep\betterSpring\Usuario.class

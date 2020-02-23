@@ -11,20 +11,16 @@ import java.util.logging.Logger;
 
 import edu.escuelaing.arep.betterSpring.Usuario;
 
-/**
- * Hello world!
- *
- */
 public class UsuarioImpl {
-	private String user;
-	/**
-	 * Password of database
-	 */
-	private String password;
 
+	private String user;
+	private String password;
 	private String url;
 	private Connection connection;
 
+	/**
+	 * Constructor de la clase UsuarioImpl.
+	 */
 	public UsuarioImpl() {
 		this.user = "lyhunmlllpldmn";
 		this.password = "6bc2dddb0d633465a996cf68bc8132fd94cc27cf16d828ba2cb44a130d24468b";
@@ -37,6 +33,10 @@ public class UsuarioImpl {
 		}
 	}
 
+	/**
+	 * Inserta un usuario .
+	 * @param usr usuario a insertat .
+	 */
 	public void insertUsuario(Usuario usr) {
 		String consulta = "INSERT INTO \"Usuario\" (id, correo, nombre, apellido) VALUES (?,?,?,?)";
         try {
@@ -51,6 +51,10 @@ public class UsuarioImpl {
 		}
 	}
 
+	/**
+	 * Devuelve todos los usuarios en la base de datos.
+	 * @return una lista con los usuarios.
+	 */
 	public ArrayList<Usuario> getUsuarios() {
 		String consulta = "SELECT * FROM \"Usuario\"";
         ArrayList<Usuario> usuarios = new ArrayList<Usuario>();

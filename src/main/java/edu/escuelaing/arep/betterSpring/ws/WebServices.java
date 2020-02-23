@@ -10,6 +10,10 @@ public class WebServices {
 
     public static UsuarioImpl usuario = new UsuarioImpl();
 
+	/**
+	 * Retorna el html de la pagina del hello.
+	 * @return el string con el html del recurso hello.html
+	 */
     @Web("/hello.html")
     public static String hello(){
 		String cad = "HTTP/1.1 200 OK\r\n" + "Content-Type: text/html\r\n" + "\r\n" 
@@ -30,6 +34,10 @@ public class WebServices {
         return cad;
     }
 
+	/**
+	 * Retorna el html de la pagina del users traido de la base de datos.
+	 * @return el string con el html del recurso users.bd
+	 */
     @Web("/users.bd")
     public static String UserDataBase(){
         return "HTTP/1.1 200 OK\r\n" + "Content-Type: text/html\r\n" + "\r\n" + "<!DOCTYPE html>"
@@ -59,6 +67,10 @@ public class WebServices {
                 + "</html>";
     }
 
+	/**
+	 * Devuelve los datos del usuario traidos de la base de datos.
+	 * @return la informacion de los usuarios.
+	 */
     private static String datosUsuarios() {
 		String usuarioInfo = "";
 		List<Usuario> allUsuarios = usuario.getUsuarios();
@@ -71,7 +83,11 @@ public class WebServices {
 		}
 		return usuarioInfo;
     }
-    
+	
+	/**
+	 * Retorna la pagina web con las imagenes.
+	 * @return el string con el html del recurso webPage.img
+	 */
     @Web("/webPage.img")
     public static String webPage(){
         return "HTTP/1.1 200 \r\n\r\n<html><head><title>HTML con Imagen</title></head>"
