@@ -64,7 +64,7 @@ Se puede observar el recurso de hello.html que es el retorno de un HTML. **/hell
 ![](https://github.com/JonatanGonzalez09/Taller4-AREP/blob/master/resources/hello.JPG)
 
 ## Licencia ##
-Este proyecto cuenta con la licencia [**GNU General Public License v3.0**](https://github.com/JonatanGonzalez09/Clientes-Servicios-AREP/blob/master/LICENSE)
+Este proyecto cuenta con la licencia [**GNU General Public License v3.0**](https://github.com/JonatanGonzalez09/Taller4-AREP/blob/master/LICENSE)
 
 ## Autor ##
 Jonatan Esteban Gonzalez Rodriguez 
