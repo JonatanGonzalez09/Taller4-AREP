@@ -4,9 +4,9 @@ El objetivo del taller es construir un servidor Web **(tipo Apache)** en _Java_,
 **Link del despliegue de la aplicación: https://evening-scrubland-29292.herokuapp.com/**
 
 ## Prerrequisitos ##
-Se debe tener conocimientos claros de la programación Orientada a objetos.
-Se debe tener conocimientos sobre manejo de POJOS.
-Se debe tener conocimientos sobre como funciona un servidor Web.
+* Se debe tener conocimientos claros de la programación Orientada a objetos.
+* Se debe tener conocimientos sobre manejo de POJOS.
+* Se debe tener conocimientos sobre como funciona un servidor Web.
 
 ## Construido con ##
 [Maven](https://maven.apache.org/): Para la gestión de dependencias.
