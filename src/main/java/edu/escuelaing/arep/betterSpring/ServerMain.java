@@ -11,22 +11,22 @@ import java.net.Socket;
 import edu.escuelaing.arep.betterSpring.framework.BetterSpringBoot;
 import edu.escuelaing.arep.betterSpring.ws.WebServices;
 
-public class Server {
+public class ServerMain {
 	
 	private int puerto=getPort();
-	private Socket clientSocket;
-	private static ServerSocket servSocket;
+	private Socket clSocket;
+	private static ServerSocket serSocket;
     private String serverMessage;
     private BetterSpringBoot spring;
 
     /**
      * Constructor de la clase Servidor.
      */
-    public Server() {
+    public ServerMain() {
         this.spring = new BetterSpringBoot();
-        this.clientSocket = null;
+        this.clSocket = null;
         try {
-            this.servSocket = new ServerSocket(this.puerto);
+            this.serSocket = new ServerSocket(this.puerto);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -41,24 +41,24 @@ public class Server {
         while (true) {
             try {
                 System.out.println("Estableciendo la conexión...");
-                this.clientSocket = this.servSocket.accept();
+                this.clSocket = this.serSocket.accept();
 
                 System.out.println("Cliente establecido...");
 
-                BufferedReader entrada = new BufferedReader(new InputStreamReader(this.clientSocket.getInputStream()));
+                BufferedReader entrada = new BufferedReader(new InputStreamReader(this.clSocket.getInputStream()));
 
                 String path = this.handleRequest(entrada);
                 System.out.println("Path:"+ path);
 
-                OutputStream os = clientSocket.getOutputStream();
+                OutputStream os = clSocket.getOutputStream();
 
                 if(path != null) {
                     if(path.equals("/hello.html")){
-						prueba(clientSocket, os);
+						prueba(clSocket, os);
 					}else if(path.equals("/users.bd")){
-                        usersBD(clientSocket, os);
+                        usersBD(clSocket, os);
                     }else if (path.equals("/webPage.img")){
-                        webPage(clientSocket, os);
+                        webPage(clSocket, os);
                     }else{
                         pageNotFound(os);
                     }
@@ -78,7 +78,7 @@ public class Server {
     private void usersBD(Socket clientSocket2, OutputStream os) {
         PrintWriter res = new PrintWriter(os, true);
         String outputLine = WebServices.UserDataBase();
-        setOutput(res, outputLine, os);
+        MostrarPage(res, outputLine, os);
     }
 
     /**
@@ -89,7 +89,7 @@ public class Server {
     private void prueba(Socket clientSocket2, OutputStream os) {
         PrintWriter res = new PrintWriter(os, true);
         String outputLine = WebServices.hello();
-        setOutput(res, outputLine, os);
+        MostrarPage(res, outputLine, os);
     }
 
     /**
@@ -100,7 +100,7 @@ public class Server {
     private void webPage(Socket clientSocket2, OutputStream os) {
         PrintWriter res = new PrintWriter(os, true);
         String outputLine = WebServices.webPage();
-        setOutput(res, outputLine, os);
+        MostrarPage(res, outputLine, os);
     }
 
     /**
@@ -110,24 +110,24 @@ public class Server {
     private void pageNotFound(OutputStream os) {
         PrintWriter res = new PrintWriter(os, true);
         String outputLine = "HTTP/1.1 404 \r\n\r\n<html><body><h1>Page Not Found</h1></body></html>";
-        setOutput(res, outputLine, os);
+        MostrarPage(res, outputLine, os);
     }
 
     /**
      * Atiende la solicitud del cliente.
-     * @param entrada la URL del cliente.
+     * @param url la URL del cliente.
      * @return devuelve la cadena de la url de la entrada.
      */
-    public String handleRequest(BufferedReader entrada) {
-		boolean notExit=true;
+    public String handleRequest(BufferedReader url) {
+		boolean flag=true;
 		String path=null;
 		try {
-			while((this.serverMessage=entrada.readLine())!=null && notExit) {
+			while((this.serverMessage=url.readLine())!=null && flag) {
 				
 				if(this.serverMessage.contains("GET")) {
-					String[]dir=this.serverMessage.split(" ");
-					path=dir[1];
-					notExit=false;
+					String[]p=this.serverMessage.split(" ");
+					path=p[1];
+					flag = false;
 				}
 			}
 		} 
@@ -143,7 +143,7 @@ public class Server {
      * @param outputLine la pagina que se mostrara.
      * @param os Output Stream.
      */
-    private void setOutput(PrintWriter res, String outputLine, OutputStream os) {
+    private void MostrarPage(PrintWriter res, String outputLine, OutputStream os) {
         res.println(outputLine);
         res.flush();
         res.close();
@@ -171,11 +171,11 @@ public class Server {
      * @param args parametros que necesite el programa principal.
      */
     public static void main(String args[]) {
-        Server server = new Server();
+        ServerMain server = new ServerMain();
         System.out.println("Iniciando servidor");
         server.start();
         try {
-            servSocket.close();
+            serSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
